@@ -3,7 +3,6 @@ package com.singular.blogapijava.controller;
 import com.singular.blogapijava.dto.PostDTO;
 import com.singular.blogapijava.exception.UserNotFoundException;
 import com.singular.blogapijava.model.Post;
-import com.singular.blogapijava.repository.PostRepository;
 import com.singular.blogapijava.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,10 +28,10 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public ResponseEntity<Object> getPostById(@PathVariable String id){
+    public ResponseEntity<Object> getPostById(@PathVariable String id) {
         Post response = postService.getPostById(id);
 
-        if(Objects.isNull(response)){
+        if (Objects.isNull(response)) {
             return ResponseEntity.status(404).body("Post não encontrado");
         }
 

@@ -5,7 +5,7 @@ import com.singular.blogapijava.model.Post;
 
 public class PostMapper {
 
-    public static Post from (PostDTO dto) {
+    public static Post from(PostDTO dto) {
         Post post = new Post();
         post.setTitulo(dto.getTitulo());
         post.setConteudo(dto.getConteudo());
