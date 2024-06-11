@@ -1,8 +1,8 @@
 package com.singular.blogapijava.repository;
 
-import com.singular.blogapijava.model.Post;
+import com.singular.blogapijava.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface PostRepository extends MongoRepository<Post, String> {
+public interface UserRepository extends MongoRepository<User, String> {
 
 }

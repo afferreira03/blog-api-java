@@ -1,23 +1,12 @@
-package com.singular.blogapijava.model;
+package com.singular.blogapijava.dto;
 
+public class PostDTO {
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDateTime;
-
-@Document
-public class Post {
-
-    @Id
     private String id;
     private String titulo;
     private String conteudo;
     private String imgagemUrl;
-    private LocalDateTime dataCriacao;
-    @DBRef(db = "User")
-    private User autor;
+    private String autor;
 
     public String getId() {
         return id;
@@ -51,19 +40,11 @@ public class Post {
         this.imgagemUrl = imgagemUrl;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public User getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void setAutor(User autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 }

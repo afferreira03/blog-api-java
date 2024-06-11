@@ -1,25 +1,15 @@
-package com.singular.blogapijava.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.singular.blogapijava.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
-@Document
-public class User {
+public class UserDTO {
 
-    @Id
     private String id;
     private String nome;
     private LocalDate dataCadastro;
     private String senha;
     private String email;
     private boolean isAtivo;
-
-    @DBRef(db = "Post")
-    private List<Post> posts;
 
     public String getId() {
         return id;
@@ -67,13 +57,5 @@ public class User {
 
     public void setAtivo(boolean ativo) {
         isAtivo = ativo;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
     }
 }
