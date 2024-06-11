@@ -8,7 +8,6 @@ import com.singular.blogapijava.model.User;
 import com.singular.blogapijava.repository.PostRepository;
 import com.singular.blogapijava.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,7 +30,7 @@ public class PostService {
         Post post = PostMapper.from(postDTO);
 
         Optional<User> autor = userRepository.findById(postDTO.getAutor());
-        if(autor.isEmpty()) {
+        if (autor.isEmpty()) {
             throw new UserNotFoundException("Usuário não cadastrado.");
         }
 
