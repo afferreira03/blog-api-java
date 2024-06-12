@@ -5,7 +5,7 @@ public class PostDTO {
     private String id;
     private String titulo;
     private String conteudo;
-    private String imgagemUrl;
+    private String imagemUrl;
     private String autor;
 
     public String getId() {
@@ -32,12 +32,12 @@ public class PostDTO {
         this.conteudo = conteudo;
     }
 
-    public String getImgagemUrl() {
-        return imgagemUrl;
+    public String getImagemUrl() {
+        return imagemUrl;
     }
 
-    public void setImgagemUrl(String imgagemUrl) {
-        this.imgagemUrl = imgagemUrl;
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 
     public String getAutor() {
