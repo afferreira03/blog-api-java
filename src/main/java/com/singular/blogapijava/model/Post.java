@@ -2,7 +2,6 @@ package com.singular.blogapijava.model;
 
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -16,8 +15,7 @@ public class Post {
     private String conteudo;
     private String imgagemUrl;
     private LocalDateTime dataCriacao;
-    @DBRef(db = "User")
-    private User autor;
+    private String userId;
 
     public String getId() {
         return id;
@@ -59,11 +57,11 @@ public class Post {
         this.dataCriacao = dataCriacao;
     }
 
-    public User getAutor() {
-        return autor;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setAutor(User autor) {
-        this.autor = autor;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

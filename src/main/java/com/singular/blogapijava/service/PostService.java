@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -19,25 +20,32 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
-
+    private final UserService userService
+            ;
     @Autowired
-    public PostService(PostRepository postRepository, UserRepository userRepository) {
+    public PostService(PostRepository postRepository,UserService userService, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public Post savePost(PostDTO postDTO) throws UserNotFoundException {
         Post post = PostMapper.from(postDTO);
 
-        Optional<User> autor = userRepository.findById(postDTO.getAutor());
-        if (autor.isEmpty()) {
+        User autor = userService.getUserById(postDTO.getAutor());
+
+        if (Objects.isNull(autor)) {
             throw new UserNotFoundException("Usuário não cadastrado.");
         }
 
-        post.setAutor(autor.get());
+        post.setUserId(autor.getId());
         post.setDataCriacao(LocalDateTime.now());
 
-        return postRepository.save(post);
+        Post response = postRepository.save(post);
+
+        userService.addPostToUserById(post, postDTO.getAutor());
+
+        return response;
     }
 
     public List<Post> getAllPosts() {
