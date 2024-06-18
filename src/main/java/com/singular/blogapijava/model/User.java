@@ -18,7 +18,7 @@ public class User {
     private String email;
     private boolean isAtivo;
 
-    @DBRef(db = "Post")
+    @DBRef
     private List<Post> posts;
 
     public String getId() {

@@ -4,7 +4,6 @@ import com.singular.blogapijava.dto.UserDTO;
 import com.singular.blogapijava.model.User;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class UserMapper {
 
@@ -16,7 +15,6 @@ public class UserMapper {
         user.setNome(dto.getNome());
         user.setSenha(dto.getSenha());
         user.setDataCadastro(LocalDate.now());
-        user.setPosts(new ArrayList<>());
 
         return user;
     }
