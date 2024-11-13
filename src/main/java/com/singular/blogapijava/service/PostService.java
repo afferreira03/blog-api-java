@@ -20,10 +20,10 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
-    private final UserService userService
-            ;
+    private final UserService userService;
+
     @Autowired
-    public PostService(PostRepository postRepository,UserService userService, UserRepository userRepository) {
+    public PostService(PostRepository postRepository, UserService userService, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.userService = userService;

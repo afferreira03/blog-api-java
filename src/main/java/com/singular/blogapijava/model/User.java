@@ -76,4 +76,16 @@ public class User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", nome='" + nome + '\'' +
+                ", dataCadastro=" + dataCadastro +
+                ", email='" + email + '\'' +
+                ", isAtivo=" + isAtivo +
+                ", posts=" + posts +
+                '}';
+    }
 }
