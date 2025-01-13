@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
-@RestController("/blog")
+@RestController()
+@RequestMapping("/blog")
 public class PostController {
 
-    private PostService postService;
+    private final PostService postService;
 
     @Autowired
     public PostController(PostService postService) {
@@ -38,8 +39,8 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping("/post")
-    public ResponseEntity<Post> savePost(@RequestParam PostDTO postDTO) throws UserNotFoundException {
+    @PostMapping("/posts")
+    public ResponseEntity<Post> savePost(@RequestBody PostDTO postDTO) throws UserNotFoundException {
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.savePost(postDTO));
     }
 }

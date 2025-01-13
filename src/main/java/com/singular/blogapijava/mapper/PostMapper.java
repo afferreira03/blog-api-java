@@ -9,7 +9,7 @@ public class PostMapper {
         Post post = new Post();
         post.setTitulo(dto.getTitulo());
         post.setConteudo(dto.getConteudo());
-        post.setImgagemUrl(dto.getImgagemUrl());
+        post.setImgagemUrl(dto.getImagemUrl());
         return post;
     }
 
