@@ -1,6 +1,7 @@
 package com.singular.blogapijava.controller;
 
 import com.singular.blogapijava.dto.UserDTO;
+import com.singular.blogapijava.exception.UserAlreadyExistException;
 import com.singular.blogapijava.model.User;
 import com.singular.blogapijava.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) throws UserAlreadyExistException {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(userDTO));
     }
 }

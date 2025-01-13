@@ -2,6 +2,7 @@ package com.singular.blogapijava.controller;
 
 import com.singular.blogapijava.dto.AuthenticationRequestDTO;
 import com.singular.blogapijava.dto.UserDTO;
+import com.singular.blogapijava.exception.UserAlreadyExistException;
 import com.singular.blogapijava.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Object> registerNewUser(@RequestBody UserDTO user) {
+    public ResponseEntity<Object> registerNewUser(@RequestBody UserDTO user) throws UserAlreadyExistException {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.registerUser(user));
     }
 

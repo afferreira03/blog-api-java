@@ -27,14 +27,14 @@ public class SecurityConfig {
     private final JWTUtil jwtUtil;
 
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     public SecurityConfig(CustomUserDetailsService userDetailsService, JWTUtil jwtUtil) {
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -52,7 +52,9 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers("/blog/register", "/blog/login")
+                    authorize.requestMatchers("/blog/register/**", "/blog/login/**")
+                            .permitAll()
+                            .requestMatchers("/posts/**", "/users/**")
                             .permitAll()
                             .anyRequest()
                             .authenticated();

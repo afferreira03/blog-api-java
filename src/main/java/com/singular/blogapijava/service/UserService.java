@@ -1,6 +1,7 @@
 package com.singular.blogapijava.service;
 
 import com.singular.blogapijava.dto.UserDTO;
+import com.singular.blogapijava.exception.UserAlreadyExistException;
 import com.singular.blogapijava.exception.UserNotFoundException;
 import com.singular.blogapijava.mapper.UserMapper;
 import com.singular.blogapijava.model.Post;
@@ -24,8 +25,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User saveUser(UserDTO userDto) {
+    public User saveUser(UserDTO userDto) throws UserAlreadyExistException {
         User user = UserMapper.from(userDto);
+
+        Optional<User> isUser = Optional.ofNullable(userRepository.findByEmail(user.getEmail()));
+
+        if(isUser.isPresent()) {
+            throw new UserAlreadyExistException("Usuário já cadastrado");
+        }
+
         return userRepository.save(user);
     }
 
@@ -41,13 +49,13 @@ public class UserService {
     public void addPostToUserById(Post post, String id) throws UserNotFoundException {
         Optional<User> autorOptional = userRepository.findById(id);
 
-        if(autorOptional.isEmpty()) {
+        if (autorOptional.isEmpty()) {
             throw new UserNotFoundException("Usuario não encontrado");
         }
 
         User autor = autorOptional.get();
 
-        if(Objects.isNull(autor.getPosts())){
+        if (Objects.isNull(autor.getPosts())) {
             List<Post> posts = new ArrayList<>();
             posts.add(post);
             autor.setPosts(posts);

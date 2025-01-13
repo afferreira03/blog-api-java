@@ -2,6 +2,7 @@ package com.singular.blogapijava.service;
 
 import com.singular.blogapijava.dto.AuthenticationRequestDTO;
 import com.singular.blogapijava.dto.UserDTO;
+import com.singular.blogapijava.exception.UserAlreadyExistException;
 import com.singular.blogapijava.model.User;
 import com.singular.blogapijava.util.JWTUtil;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +28,7 @@ public class AuthService {
         this.jwtUtil = jwtUtil;
     }
 
-    public String registerUser(UserDTO userDTO) {
+    public String registerUser(UserDTO userDTO) throws UserAlreadyExistException {
         userDTO.setSenha(passwordEncoder.encode(userDTO.getSenha()));
         User user = userService.saveUser(userDTO);
         return user.toString();
